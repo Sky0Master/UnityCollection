@@ -7,6 +7,7 @@ public class UIDragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler
 {
     Transform pa;
     bool _isDragging;
+    public int uId;
     public void OnBeginDrag(PointerEventData eventData)
     {
         transform.SetParent(pa.parent,false);

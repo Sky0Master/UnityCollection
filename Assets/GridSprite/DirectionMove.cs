@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class DirectionMove : MonoBehaviour
 {
     public float Speed = 5f;
@@ -42,7 +43,13 @@ public class DirectionMove : MonoBehaviour
     }
     void Update()
     {
-        Direction();
-        Move();
+        Vector3 mouseScreenPos = Input.mousePosition;
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
+        mouseWorldPos.z = transform.position.z;
+        if(Vector3.Distance(mouseWorldPos, transform.position)>0.1f)
+        {
+            Direction();
+            Move();
+        }
     }
 }

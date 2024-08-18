@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class Deadzone : MonoBehaviour
 {
+    public Transform startPoint;
     void OnTriggerEnter2D(Collider2D other)
     {
-
-        if (other.gameObject.tag == "Player")
+        if(other.gameObject.tag == "Player")
         {
-            //other.gameObject.GetComponent<PlayerMove>().Die();
+            other.gameObject.transform.position = startPoint.position;
         }
     }
 }
