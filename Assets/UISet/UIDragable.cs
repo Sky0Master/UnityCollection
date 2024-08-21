@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.Video;
 
 public class UIDragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler, IDragHandler
 {
@@ -11,7 +12,6 @@ public class UIDragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler, IDrag
     public int uId;
     public UnityEvent endDragEvent;
     
-
     public void OnBeginDrag(PointerEventData eventData)
     {
         //transform.SetParent(pa.parent,false);
@@ -28,13 +28,13 @@ public class UIDragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler, IDrag
     {
         
     }
-    // Start is called before the first frame update
+
     void Start()
     {
         pa = transform.parent;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (_isDragging)
@@ -43,5 +43,5 @@ public class UIDragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler, IDrag
         }
     }
 
-    
+
 }
