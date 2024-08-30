@@ -97,7 +97,7 @@ public class PlayerMove : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Space))
             {
                 rb.AddForce(new Vector2(0,JumpForce), ForceMode2D.Impulse);
-                animator.SetTrigger("jump");
+                animator?.SetTrigger("jump");
             }
         }
         else{
@@ -114,8 +114,8 @@ public class PlayerMove : MonoBehaviour
             transform.localScale = new Vector3(-scaleValue, scaleValue, 0);
         }
         isMove = Mathf.Abs(xv) > 0.01f;
-        animator.SetBool("is_move", isMove);
-        animator.SetBool("grounded", isGrounded);
+        animator?.SetBool("is_move", isMove);
+        animator?.SetBool("grounded", isGrounded);
         rb.velocity = new Vector2(xv, rb.velocity.y + dvy);
     }
 }

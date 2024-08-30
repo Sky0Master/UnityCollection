@@ -9,18 +9,25 @@ public class UIDragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler, IDrag
 {
     Transform pa;
     bool _isDragging;
+
+    public bool isDragging {get {return _isDragging;}}
+
     public int uId;
     public UnityEvent endDragEvent;
+
+    private Vector2 offset;
     
     public void OnBeginDrag(PointerEventData eventData)
     {
-        //transform.SetParent(pa.parent,false);
-        _isDragging = true;
+        if(eventData.button == PointerEventData.InputButton.Left)
+        {
+            _isDragging = true;
+            offset = (Vector2)transform.position - eventData.position;
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        //transform.SetParent(pa, false);
         _isDragging = false;
         endDragEvent?.Invoke();
     }
@@ -39,7 +46,7 @@ public class UIDragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler, IDrag
     {
         if (_isDragging)
         {
-            transform.position = Input.mousePosition;
+            transform.position = (Vector2)Input.mousePosition + offset;
         }
     }
 
