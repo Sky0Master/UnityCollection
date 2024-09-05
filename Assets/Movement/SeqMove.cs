@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class SeqMove : MonoBehaviour
@@ -7,13 +8,22 @@ public class SeqMove : MonoBehaviour
     int curIndex;
     public bool isLoop = false;
     int delta;
+    public bool useChildren = false;
+    public Transform Pa;
     void Start()
     {
         curIndex = 0;
         delta = 1;
+        if(useChildren)
+        {
+            wayPoints = new Transform[Pa.childCount];
+            for(int i = 0; i < Pa.childCount; i++)
+            {
+                wayPoints[i] = Pa.GetChild(i);
+            }
+        }
     }
 
-   
     void Update()
     {
         
