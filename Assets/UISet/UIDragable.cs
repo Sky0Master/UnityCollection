@@ -16,6 +16,8 @@ public class UIDragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler, IDrag
     public UnityEvent endDragEvent;
 
     private Vector2 offset;
+    private UISlot _curOverlapSlot;
+
     
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -26,14 +28,24 @@ public class UIDragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler, IDrag
         }
     }
 
+    
+
     public void OnEndDrag(PointerEventData eventData)
     {
         _isDragging = false;
         endDragEvent?.Invoke();
+        if(_curOverlapSlot!=null)
+        {
+            _curOverlapSlot.AssignItem(gameObject);
+            _curOverlapSlot = null;
+        }
     }
     public void OnDrag(PointerEventData eventData)
     {
-        
+        if (_isDragging)
+        {
+            transform.position = (Vector2)Input.mousePosition + offset;
+        }
     }
 
     void Start()
@@ -44,10 +56,8 @@ public class UIDragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler, IDrag
 
     void Update()
     {
-        if (_isDragging)
-        {
-            transform.position = (Vector2)Input.mousePosition + offset;
-        }
+        
+        
     }
 
 
