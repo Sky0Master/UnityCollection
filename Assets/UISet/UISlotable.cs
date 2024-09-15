@@ -42,7 +42,6 @@ public class UISlotable : MonoBehaviour, IDragHandler,IEndDragHandler,IBeginDrag
         
         curUiSlot = uiSlot;
         curUiSlot.AssignItem(gameObject);
-        startPosition = transform.position;
     }
 
     void Update()

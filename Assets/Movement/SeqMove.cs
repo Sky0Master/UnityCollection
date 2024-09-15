@@ -8,18 +8,21 @@ public class SeqMove : MonoBehaviour
     int curIndex;
     public bool isLoop = false;
     int delta;
-    public bool useChildren = false;
-    public Transform Pa;
+    bool useChildren = false;
+    public Transform parentNode;
     void Start()
     {
+        if(parentNode!=null)
+            useChildren = true;
+
         curIndex = 0;
         delta = 1;
         if(useChildren)
         {
-            wayPoints = new Transform[Pa.childCount];
-            for(int i = 0; i < Pa.childCount; i++)
+            wayPoints = new Transform[parentNode.childCount];
+            for(int i = 0; i < parentNode.childCount; i++)
             {
-                wayPoints[i] = Pa.GetChild(i);
+                wayPoints[i] = parentNode.GetChild(i);
             }
         }
     }
