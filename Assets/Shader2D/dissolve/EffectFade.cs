@@ -10,10 +10,15 @@ public class EffectFade : MonoBehaviour
     float _duration = 0.5f;
     [SerializeField]
     ParticleSystem _particle;
+
     Material _material;
+    SpriteRenderer _sr;
     private void Awake()
     {
-        _material = GetComponent<SpriteRenderer>().material;
+        _sr = GetComponent<SpriteRenderer>();
+        _material = _sr.material;
+        ParticleSystem.ShapeModule shapeModule = _particle.shape;
+        shapeModule.sprite = _sr.sprite;
     }
     private void Update()
     {
